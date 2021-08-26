@@ -16,7 +16,7 @@ socket.on('disconnect', () => {
 
 
 socket.on('ultimo-ticket', (ultimo_ticket) => {
-    lblNuevoTicket.innerText = `Ultimo ticket: ${ultimo_ticket}`
+    lblNuevoTicket.innerText = `Ultimo turno de cliente: ${ultimo_ticket}`
 });
 
 btnCrear.addEventListener( 'click', () => {

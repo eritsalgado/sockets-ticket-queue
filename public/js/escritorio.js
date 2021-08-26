@@ -15,7 +15,7 @@ if( !searchParams.has('escritorio') ){
 const escritorio = searchParams.get('escritorio')
 const socket = io();
 
-lblEscritorio.innerText = `Escritorio ${escritorio}`
+lblEscritorio.innerText = `${escritorio}`
 alerta.style.display = 'none'
 
 socket.on('connect', () => {
@@ -43,7 +43,7 @@ btn_atender.addEventListener( 'click', () => {
             ticket_atendiendo.innerText = 'Nadie'
             return alerta.style.display = ''
         }
-        ticket_atendiendo.innerText = ticket.numero
+        ticket_atendiendo.innerText = `Cliente no. ${ticket.numero}`
         alerta.style.display = 'none'
         
 

@@ -51,7 +51,7 @@ class TicketControl {
 
         this.guardarDB()
 
-        return 'Ticket ' + ticket.numero
+        return 'Nuevo turno: ' + ticket.numero
     }
 
     atenderTicket( escritorio ){
