@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Pridi:wght@500&display=swap');
+
+.navbar{
+    height: 15vh;
+}
+.navbar img{
+    max-width: 10vh;
+}
+.main{
+    width: 100%;
+    height: 100vh;
+    background-image: url("../img/logo.png");
+    background-size: 90vh;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+.main::before {
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.container-fluid{
+    height: 100vh;
+}
+
+.test-element{
+    width: 50px;
+    height: 0px;
+    background-color: purple;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all .75s ease;
+}
+.test-element.show {
+    opacity: 1;
+    height: 50px;
+}
+.test-element.hide {
+    opacity: 1;
+    height: 0px;
+}
+
+h2{
+    font-size: 80px!important;
+    background-color: #78201f;
+    display: inline-block;
+    color: white;
+    border-radius: 20px;
+    padding: 10px 30px;
+}
+.return{
+    background-color: #78201f;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+}
+
+.card{
+    opacity: 0;
+    display: none;
+    transition: all .75s ease;
+}
+
+.card.show .card-header,
+.card.show .card-body,
+.card.show .card-footer,
+.card.show{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    opacity: 1;
+    animation: FadeIn 2.5s forwards;
+}
+
+.card.hide{
+    animation: OcultarTarjeta 1s forwards;
+}
+
+.card.show{
+    animation: MostrarTarjeta 1s forwards;
+}
+.card.barbero{
+    width: 25vh;
+    border: none;
+    background: rgba(255,255,255,0.8);
+}
+.card .card-header{
+    font-size: 30px;
+    border: none;
+    background: none;
+    color: #78201f;
+    font-family: 'Pridi', serif;
+    font-weight: bold;
+    text-align:center;
+    text-transform: uppercase;
+}
+.card .card-body img{
+    width: 150px;
+}
+.card .card-footer{
+    min-height: 7vh;
+    font-size: 20px;
+    color: white;
+    background-color: #78201f;
+}
+.card .nombre-cliente{
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Estilos para seccion de clientes */
+.cliente-esperando{
+    margin: 20px 30px;
+}
+
+.client-icon{
+    display: inline-block;
+}
+.client-icon img{
+    width: 10vh;
+}
+
+.client-name{
+    display: inline-block;
+    font-size: 30px;
+    margin-left: 40px;
+    background: #78201f;
+    padding: 10px 50px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 20px;
+    width: 400px;
+    text-align: center;
+}
+
+
+
+.cliente-esperando.show .client-name{
+    animation: MostrarNombreDeCliente 1s forwards;
+}
+
+.cliente-esperando.show .client-icon img{
+    animation: FadeIn 1.5s forwards;
+}
+/* .cliente-esperando.show .client-icon, */
+.cliente-esperando.show .client-name span{
+    opacity: 1;
+    animation: FadeIn 2.5s forwards;
+}
+.cliente-esperando.hide .client-icon,
+.cliente-esperando.hide .client-name,
+.cliente-esperando.hide{
+    opacity: 1;
+    animation: FadeIn 3s forwards;
+}
+
+
+/* The animation code */
+@keyframes OcultarTarjeta {
+    0%   {
+        width: 25vh;
+        height: 0px;
+    }
+    100% {
+        width: 0px;
+        height: 0px;
+        display: none;
+    }
+}
+@keyframes MostrarTarjeta {
+    0%   {
+        width: 1vh;
+        height: 0px;
+    }
+    100% {
+        width: 25vh;
+        height: 100%;
+    }
+}
+@keyframes FadeIn {
+    0%   {
+        opacity: 0;
+    }
+    80%   {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes FadeOut {
+    0%   {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+@keyframes MostrarImgDeCliente {
+    0%   {
+        width: 0;
+    }
+    100% {
+        width: 10vh;
+    }
+}
+@keyframes MostrarNombreDeCliente {
+    0%   {
+        width: 0;
+        padding: 0;
+    }
+    100% {
+        width: 400px;
+        padding: 10px 50px;
+    }
+}
