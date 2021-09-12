@@ -10,42 +10,82 @@ const socketController = (socket) => {
     socket.emit('estado-actual', ticketControl.ultimos5)
     socket.emit('tickets-pendientes', ticketControl.tickets.length)
 
-    socket.on('siguiente-ticket', ( payload, callback ) => {
+    socket.on('nuevo-cliente', ( {nombre}, callback ) => {
         
-        const siguiente = ticketControl.siguiente()
-        callback(siguiente)
+        const cliente = ticketControl.nuevo_cliente(nombre)
+        callback(cliente)
         socket.broadcast.emit('tickets-pendientes', ticketControl.tickets.length)
+        socket.broadcast.emit('nuevo-cliente-registrado', cliente)
+
+    })
+    socket.on('nuevo-barbero', ( {nombre}, callback ) => {
+        
+        const barbero = ticketControl.nuevo_barbero(nombre)
+        callback(barbero)
+        socket.emit('nuevo-barbero-registrado', barbero)
+        socket.broadcast.emit('nuevo-barbero-registrado', barbero)
 
     })
 
-    socket.on('atender-ticket', ({escritorio}, callback) => {
-        if(!escritorio){
+    socket.on('obtener-ultimo-ticket', ( payload, callback ) => {
+        callback(ticketControl.ultimo)
+    })
+
+    socket.on('obtener-clientes-esperando', ( payload, callback ) => {
+        callback(ticketControl.tickets)
+    })
+    socket.on('obtener-barberos', ( payload, callback ) => {
+        callback(ticketControl.barberos)
+    })
+
+    socket.on('atender-cliente', ({barbero}, callback) => {
+        if(!barbero){
             return callback({
                 ok:false,
-                msg:'El escritorio es obligatorio'
+                msg:'El barbero es obligatorio'
             })
         }
 
-        const ticket = ticketControl.atenderTicket( escritorio )
+        const cliente = ticketControl.atenderTicket( barbero )
 
         //Notificar cambio en los ultimos 5 tickets
         
-        socket.broadcast.emit('estado-actual', ticketControl.ultimos5)
-        socket.emit('tickets-pendientes', ticketControl.tickets.length)
-        socket.broadcast.emit('tickets-pendientes', ticketControl.tickets.length)
+        // socket.broadcast.emit('estado-actual', ticketControl.ultimos5)
+        // socket.emit('tickets-pendientes', ticketControl.tickets.length)
+        // socket.broadcast.emit('tickets-pendientes', ticketControl.tickets.length)
+        const response = {
+            id:         !cliente ? null : cliente.numero,
+            nombre:     !cliente ? null : cliente.nombre,
+            barbero
+        }
 
-        if ( !ticket ) {
+        socket.emit('atendiendo-nuevo-cliente', response)
+        socket.broadcast.emit('atendiendo-nuevo-cliente', response)
+
+        if ( !cliente ) {
             callback({
                 ok:false,
-                msg:'No hay tickets pendientes'
+                msg:'No hay más clientes esperando'
             })
         }else{
             callback({
                 ok:true,
-                msg:'Siguiente ticket' + ticket.numero,
-                ticket
+                msg:'Siguiente cliente' + cliente.nombre,
+                cliente,
+                id_barbero:barbero
             })
         }
+
+    })
+
+    socket.on('retirar-barbero', ({barbero}, callback) => {
+        
+        const barbero_eliminado = ticketControl.terminar_servicio( barbero )
+
+        socket.emit('barbero_eliminado', barbero_eliminado)
+        socket.broadcast.emit('barbero_eliminado', barbero_eliminado)
+
+        return callback(barbero_eliminado)
 
     })
 

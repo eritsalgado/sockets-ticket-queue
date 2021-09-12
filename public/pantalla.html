@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de espera</title>
+    <link rel="stylesheet" href="./assets/css/pantalla_publica.css">
+    <link rel="stylesheet" href="./assets/css/social.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>    
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row fixed-top pt-5 pl-5 font-weight-bolder">
+                <div class="col-12">
+                    <a href="/" class="d-inline-block">
+                        <h3 class="d-flex justify-content-center align-items-center return">
+                            <i class="fas fa-arrow-left"></i>
+                        </h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <div id="barber-spot"
+                    class="col-12 mt-3 d-flex justify-content-around"
+                >
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="col-12 text-center pt-5">
+                    <h2>Clientes en espera: <span id="clientes_en_espera"></span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-5" id="client-spot">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/1a78bd2af6.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="./assets/js/element-slider.js"></script>
+    
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/pantalla_publica.js"></script>
+</body>
+</html>
