@@ -138,7 +138,7 @@ a:hover .return{
 .client-name{
     display: inline-block;
     font-size: 30px;
-    margin-left: 40px;
+    margin: 0 40px;
     background: #78201f;
     padding: 10px 50px;
     color: white;
@@ -147,6 +147,14 @@ a:hover .return{
     border-radius: 20px;
     width: 400px;
     text-align: center;
+}
+
+.barber-name span{
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    padding: 10px 20px;
+    border-radius: 20px;
 }
 
 
@@ -169,6 +177,14 @@ a:hover .return{
     animation: FadeOut 3s forwards;
 }
 
+
+.esperando {
+    padding: 10px;
+    border-radius: 20px;
+}
+.esperando.esperando-barbero{
+    background-color: black;
+}
 
 /* The animation code */
 @keyframes OcultarTarjeta {

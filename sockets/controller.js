@@ -10,9 +10,9 @@ const socketController = (socket) => {
     socket.emit('estado-actual', ticketControl.ultimos5)
     socket.emit('tickets-pendientes', ticketControl.tickets.length)
 
-    socket.on('nuevo-cliente', ( {nombre}, callback ) => {
+    socket.on('nuevo-cliente', ( {nombre, barbero}, callback ) => {
         
-        const cliente = ticketControl.nuevo_cliente(nombre)
+        const cliente = ticketControl.nuevo_cliente(nombre, barbero)
         callback(cliente)
         socket.broadcast.emit('tickets-pendientes', ticketControl.tickets.length)
         socket.broadcast.emit('nuevo-cliente-registrado', cliente)
